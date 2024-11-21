@@ -34,14 +34,34 @@ app.post("/animes", (req, res)=>{
     res.status(201).json(nuevoAnime);
 });
 
-app.put("/animes", (req, res)=>{
-    res.send("Ingresando al put")
+app.put("/animes/:id", (req, res)=>{
+    const animes = crearArchivo()
+    const id = parseInt(req.params.id)
+    const index = animes.findIndex((anime) => anime.id === id);
+    
+    if(index !== -1){
+        animes[index] = {...animes[index], ...req.body};
+        nuevoRegistro(animes)
+        res.json(animes[index]) 
+    }else{
+        res.status(404).json({ mensaje: 'Anime no encontrado'})
+    }
 });
 
-app.delete("/animes", (req, res)=>{
-    res.send("Ingresando al delete")
+app.delete("/animes/:id", (req, res)=>{
+    const animes = crearArchivo();
+    const id = parseInt(req.params.id)
+    const nuevosAnimes = animes.filter((a) => a.id !== id);
+
+    if (animes.length !== nuevosAnimes.length) {
+        nuevoRegistro(nuevosAnimes);
+        res.json({ mensaje: `Anime con ID ${id} ha sido eliminado` });
+    } else {
+        res.status(404).json({ mensaje: 'Anime no encontrado' });
+    }
 });
+// ****
+
 app.listen(PORT, ()=>{
     console.log("Conectado al puerto: "+PORT)
 })
-// ****
