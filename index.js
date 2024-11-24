@@ -65,3 +65,5 @@ app.delete("/animes/:id", (req, res)=>{
 app.listen(PORT, ()=>{
     console.log("Conectado al puerto: "+PORT)
 })
+
+module.exports = { app }

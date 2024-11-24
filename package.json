@@ -2,10 +2,10 @@
   "name": "modulo_vi(node)",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "exports": "./index.js",
   "scripts": {
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,15 @@
   "homepage": "https://github.com/ErickGodoyR/bootcamp_js_consolidacion_VI#readme",
   "dependencies": {
     "express": "^4.21.1",
-    "nodemon": "^3.1.7"
+    "node-fetch": "^2.6.1",
+    "nodemon": "^3.1.7",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "cross-env": "^7.0.3",
+    "mocha": "^10.0.0",
+    "supertest": "^7.0.0"
   }
 }
